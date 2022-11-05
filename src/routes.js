@@ -7,7 +7,8 @@ import Home from "./pages/Home";
 const Rotas = () => (
 <BrowserRouter>
    <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/pessoa" element={<Home />} />
           <Route path="/cadastro" element={<Cadastro />} />
         </Routes>
   </BrowserRouter>
