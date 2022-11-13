@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+//import { useNavigate } from "react-router-dom";
 
-import './Login.css';
+import './style.css';
 import BannerLogin from '../../assets/img/login.svg';
 
 async function loginUser(credentials) {
@@ -17,9 +18,11 @@ async function loginUser(credentials) {
 
 export default function Login({ setToken }) {
 
-  const [username, setUserName] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
+  //const navigate = useNavigate();
+  
   const handleSubmit = async e => {
     e.preventDefault();
     const token = await loginUser({
@@ -27,6 +30,7 @@ export default function Login({ setToken }) {
       password
     });
     setToken(token);
+    //navigate(`/home`);
   }
 
   return (
@@ -39,15 +43,21 @@ export default function Login({ setToken }) {
               <img src={BannerLogin} class="img-fluid" alt="Login Banner"/>
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div class="form-outline mb-4">
                   <label class="form-label" for="username">Username</label>
-                  <input type="text" id="username" class="form-control form-control-lg" />
+                  <input type="text" 
+                    id="username" 
+                    class="form-control form-control-lg" 
+                    onChange={e => setUsername(e.target.value)}/>
                 </div>
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="password">Password</label>
-                  <input type="password" id="password" class="form-control form-control-lg" />
+                  <input type="password"
+                    id="password" 
+                    class="form-control form-control-lg"
+                    onChange={e => setPassword(e.target.value)} />
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>

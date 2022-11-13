@@ -6,12 +6,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 
 const Rotas = () => (
-<BrowserRouter>
-   <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-        </Routes>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login setToken={() => Login()} />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+    </Routes>
   </BrowserRouter>
 )
 
