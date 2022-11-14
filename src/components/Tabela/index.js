@@ -14,6 +14,17 @@ export default function Tabela() {
         load();
     }, []);
 
+    async function pessoaUser(){
+        await fetch (`${baseURL}`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        }) 
+            .then(data => data.json())
+    }
+
     async function load() {
         await fetch(`${baseURL}`, {
             method: 'GET',
