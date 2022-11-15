@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 export default function Tabela() {
-
-    const baseURL = "http://localhost:8080/pessoa";
-
-   // const delete_id = useRef(null);  
-
     const [users, setUsers] = useState([]);
-
-    //const token = window.localStorage.getItem('token');
+    const baseURL = 'http://localhost:8080/pessoa';
+    const token = JSON.parse(window.localStorage.getItem('token'));
+    const bearer_token = token.jwtToken;
+    // const delete_id = useRef(null); 
 
     useEffect(() => {
         load();
@@ -17,10 +14,12 @@ export default function Tabela() {
     async function load() {
         await fetch(`${baseURL}`, {
             method: 'GET',
-        //    headers: {Authentication: `${token}`}
-        }).then(data => {
-                return data.json();
-            })
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': `Bearer ${bearer_token}`
+            },
+        })
+            .then(data => data.json())
             .then(data => {
                 setUsers(data);
             })
@@ -29,23 +28,15 @@ export default function Tabela() {
             });
     }
 
-    // async function deleteAll() {
-    //     await fetch(`${baseURL}`, {
-    //         method: 'DELETE'
-    //     })
-    //         .then(res => res.json)
-    //         .then(res => console.log(res));
-    // }
-
-/*     async function deleteById() {
-        const id = delete_id.current.value;
-
-        if (id) {
-            await fetch(`${baseURL}/${id}`, { method: "delete" })
-                .then(res => res.json())
-                .then(res => console.log(res))
-        }
-    } */
+    /*     async function deleteById() {
+            const id = delete_id.current.value;
+    
+            if (id) {
+                await fetch(`${baseURL}/${id}`, { method: "delete" })
+                    .then(res => res.json())
+                    .then(res => console.log(res))
+            }
+        } */
 
     return (
         <>
@@ -64,7 +55,7 @@ export default function Tabela() {
                 <tbody className="table-light border-dark text-center">
                     {users.map(user => (
                         <tr>
-                            <td><img src={user.foto} alt={`Foto de ${user.nome}`}/></td>
+                            <td><img src={user.foto} alt={`Foto de ${user.nome}`} /></td>
                             <td>{user.nome}</td>
                             <td>{user.matricula}</td>
                             <td>{user.cpf}</td>

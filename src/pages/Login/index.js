@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 //import { useNavigate } from "react-router-dom";
 
-import './style.css';
 import BannerLogin from '../../assets/img/login.svg';
 
 async function loginUser(credentials) {
