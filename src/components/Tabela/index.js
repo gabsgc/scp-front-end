@@ -5,7 +5,7 @@ export default function Tabela() {
     const baseURL = 'http://localhost:8080/pessoa';
     const token = JSON.parse(window.localStorage.getItem('token'));
     const bearer_token = token.jwtToken;
-    // const delete_id = useRef(null); 
+    const delete_id = useRef(null); 
 
     useEffect(() => {
         load();
@@ -29,7 +29,15 @@ export default function Tabela() {
             });
     }
 
-    /*     async function deleteById() {
+        async function deleteAll(){
+            await fetch(`${baseURL}`,{method: "delete"})
+            
+            .then(res => res.json())
+            .then(res => console.log(res))
+
+        } 
+
+        async function deleteById() {
             const id = delete_id.current.value;
     
             if (id) {
@@ -37,7 +45,7 @@ export default function Tabela() {
                     .then(res => res.json())
                     .then(res => console.log(res))
             }
-        } */
+        }
 
     return (
         <>
@@ -62,10 +70,13 @@ export default function Tabela() {
                             <td>{user.cpf}</td>
                             <td>{user.dataNascimento}</td>
                             <td>{user.genero}</td>
-                            <td></td>
+                            <td>
+                                
+                            </td>
                         </tr>
                     ))}
                 </tbody>
+                
             </table>
         </>
     )

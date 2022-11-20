@@ -76,6 +76,7 @@ function Forms() {
                     <div className='col-md-6'>
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
+                    
                 </form>
             </div>
         </>
