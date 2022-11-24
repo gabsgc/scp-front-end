@@ -5,7 +5,7 @@ export default function Tabela() {
     const baseURL = 'http://localhost:8080/pessoa';
     const token = JSON.parse(window.localStorage.getItem('token'));
     const bearer_token = token.jwtToken;
-    const delete_id = useRef(null); 
+    
 
     useEffect(() => {
         load();
@@ -29,23 +29,7 @@ export default function Tabela() {
             });
     }
 
-        async function deleteAll(){
-            await fetch(`${baseURL}`,{method: "delete"})
-            
-            .then(res => res.json())
-            .then(res => console.log(res))
-
-        } 
-
-        async function deleteById() {
-            const id = delete_id.current.value;
-    
-            if (id) {
-                await fetch(`${baseURL}/${id}`, { method: "delete" })
-                    .then(res => res.json())
-                    .then(res => console.log(res))
-            }
-        }
+        
 
     return (
         <>
@@ -63,16 +47,14 @@ export default function Tabela() {
                 </thead>
                 <tbody className="table-light border-dark text-center">
                     {users.map(user => (
-                        <tr>
+                        <tr key={user.matriculaPessoa}>
                             <td><img src={user.foto} alt={`Foto de ${user.nome}`} /></td>
                             <td>{user.nome}</td>
                             <td>{user.matricula}</td>
                             <td>{user.cpf}</td>
                             <td>{user.dataNascimento}</td>
                             <td>{user.genero}</td>
-                            <td>
-                                
-                            </td>
+                            <td>{user.acoes ? "presente": "ausente"}</td>
                         </tr>
                     ))}
                 </tbody>

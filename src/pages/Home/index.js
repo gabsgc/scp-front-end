@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Tabela from '../../components/Tabela';
 import Navbar from '../../components/Navbar';
+import Presenca from '../../components/Presença';
+
+
 
 export default function Home() {
     return (
@@ -17,6 +20,14 @@ export default function Home() {
             <h5 className="m-3 pt-4 text-center">Confira a lista de pessoas cadastradas no sistema</h5>
             <div className="container">
                 <Tabela />
+            </div>
+
+            <h6 className="m-3 pt-4 text-center">Conferir Presença</h6>
+            <div className="container">
+            <Link to="/cadastro" className="linkPage">
+                    <button type="button" className="btn btn-primary btn-rounded"><Presenca /></button>
+            </Link>
+                
             </div>
         </>
     )
