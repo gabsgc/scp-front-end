@@ -44,16 +44,14 @@ export default function Tabela() {
                 </thead>
                 <tbody className="table-light border-dark text-center">
                     {users.map(user => (
-                        <tr>
+                        <tr key={user.matriculaPessoa}>
                             <td><img src={user.foto} alt={`Foto de ${user.nome}`} /></td>
                             <td>{user.nome}</td>
                             <td>{user.matricula}</td>
                             <td>{user.cpf}</td>
                             <td>{user.dataNascimento}</td>
                             <td>{user.genero}</td>
-                            <td>
-                                
-                            </td>
+                            <td>{user.acoes ? "presente": "ausente"}</td>
                         </tr>
                     ))}
                 </tbody>
