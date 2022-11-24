@@ -6,6 +6,8 @@ export default function Tabela() {
     const token = JSON.parse(window.localStorage.getItem('token'));
     const bearer_token = token.jwtToken;
 
+    var userPhoto = null;
+
     useEffect(() => {
         load();
     }, []);
@@ -45,17 +47,23 @@ export default function Tabela() {
                 <tbody className="table-light border-dark text-center">
                     {users.map(user => (
                         <tr key={user.matriculaPessoa}>
-                            <td><img src={user.foto} alt={`Foto de ${user.nome}`} /></td>
+                            <td>
+                                {userPhoto
+                                ? <img src={user.foto} alt={`Foto de ${user.nome}`} />
+                                : <img src="https://user-images.githubusercontent.com/101482/29592647-40da86ca-875a-11e7-8bc3-941700b0a323.png"
+                                    alt={`Foto de ${user.nome}`} 
+                                    width="25%"/>
+                            }</td>
                             <td>{user.nome}</td>
                             <td>{user.matricula}</td>
                             <td>{user.cpf}</td>
                             <td>{user.dataNascimento}</td>
                             <td>{user.genero}</td>
-                            <td>{user.acoes ? "presente": "ausente"}</td>
+                            <td>{user.acoes ? "presente" : "ausente"}</td>
                         </tr>
                     ))}
                 </tbody>
-                
+
             </table>
         </>
     )
