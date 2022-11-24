@@ -5,7 +5,6 @@ export default function Tabela() {
     const baseURL = 'http://localhost:8080/pessoa';
     const token = JSON.parse(window.localStorage.getItem('token'));
     const bearer_token = token.jwtToken;
-    const delete_id = useRef(null); 
 
     useEffect(() => {
         load();
@@ -28,24 +27,6 @@ export default function Tabela() {
                 console.log(err);
             });
     }
-
-        async function deleteAll(){
-            await fetch(`${baseURL}`,{method: "delete"})
-            
-            .then(res => res.json())
-            .then(res => console.log(res))
-
-        } 
-
-        async function deleteById() {
-            const id = delete_id.current.value;
-    
-            if (id) {
-                await fetch(`${baseURL}/${id}`, { method: "delete" })
-                    .then(res => res.json())
-                    .then(res => console.log(res))
-            }
-        }
 
     return (
         <>
